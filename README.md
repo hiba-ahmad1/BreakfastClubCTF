@@ -2,7 +2,7 @@
 <img src="https://i.imgur.com/9Ab7VoK.png" height="80%" width="80%" alt="Patriot CTF"/>
 <p/>
 <h1>PatriotCTF2023: Breakfast Club (Cryptography)</h1>
-PatriotCTF 2023 is a Jeopardy-style CTF competition organised by the MasonCC (Mason Competitive Cyber) club at George Mason University.
+PatriotCTF 2023 is a Jeopardy-style CTF competition organized by the MasonCC (Mason Competitive Cyber) club at George Mason University.
 <br/>
 <br/>
 <h2>Challenge Description:</h2> 
