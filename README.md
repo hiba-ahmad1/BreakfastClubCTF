@@ -10,15 +10,17 @@ PatriotCTF 2023 is a Jeopardy-style CTF competition organized by the MasonCC (Ma
 "As the sysadmin for your college, you're responsible for overseeing the security of all the clubs. One of the on campus orginizations is a breakfast club with their own personal website that the leader assured you was "unhackable". He was so sure of this, that he sent you an example of how hashes are stored in the database, something about "changing the hash type multiple times for each password" or something like that. Can you crack the password and prove him wrong?"
 <br/>
 <br/>
-Flag format: PCTF{}
-<h2>Solution:</h2> 
-<p align="center">
+Flag format: <strong>PCTF{}</strong>
+<br/>
+<br/>
 Along with the prompt provided above, the challenge also includes a file called 'BreakfastPasswords.txt':  
 <br/>
 <br/>
 <img src="https://i.imgur.com/w4RmUX8.png" height="100%" width="100%" alt="BreakfastPasswords.txt"/>   
 <br/>
 <br/>
+<h2>Solution:</h2> 
+<p align="center">
 I began by attempting to decrypt some of the hashes provided using https://crackstation.net/. CrackStation is a website offering a variety of online tools such as hash cracking. I started by entering the hashes provided that have compatible algorithms with site: SHA, SHA1, MD2, MD4, MD5, SHA224, SHA256, SHA384, and SHA512: 
 <br />
 <br />
