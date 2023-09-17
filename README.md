@@ -52,88 +52,49 @@ The value outputted matches the BLAKE2B hash value in 'BreakfastPasswords.txt', 
   The current digest is: <strong>'PCTF{H@5H-------}'</strong> 
  <br/>
  <br/>
- <img src="https://i.imgur.com/25bx2Ph.png" height="30%" width="30%" alt="Uncredentialed Scan Results"/>     <img src="https://i.imgur.com/WjAcm6L.png" height="30%" width="30%" alt="Credentialed Scan Results"/>
+For the remaining 7 values, it would be too time-consuming to guess the characters manually. Therefore, with the help of the 'hashlib' module in Python, I created a Python script which outputs the hash digest of the following characters: 'a-z', 'A-Z', '0-9', and special characters. This is also based off the assumption that each hash value represents a single character, following the current trend of digests. 
+ <br/> 
+ <br/>
+ <img src="https://i.imgur.com/A6mnCvI.png" height="90%" width="90%" alt="Hash Cracker Script"/>
+ <br/>
+ <br/>
+This script takes a string input and uses the 'hashlib.algorithm()' function, where 'algorithm' is replaced by the supported hash algorithm, to return the hash digest. Out of the remaining 7 hash values, 5 are supported by hashlib: SHA3_224, SHA3_256, SHA3_384, SHA3_512, and BLAKE2s. The characters are then provided and iterated through. The provided hash from 'BreakfastPasswords.txt' is compared to the iterations, and if a match is found, it is outputted. This process was repeated for all 5 algorithms to retrieve the following values:
+ <br/>
+ <br/>
+ <img src="https://i.imgur.com/0XbhTE4.png" height="100%" width="100%" alt="Value"/>
   <br/>
  <br/>
-For further analysis, I have downloaded a deprecated version of Firefox on the Windows 10 virtual machine. When installing deprecated software, it is vital to ensure that it is done in a sandboxed environment. I then relaunched the scan and got the following results:
- <br/>
- <br/>
- <img src="https://i.imgur.com/nFye7ok.png" height="60%" width="60%" alt="Credentialed Scan Results w/ Firefox"/>
+ <img src="https://i.imgur.com/3gVjejm.png" height="150%" width="150%" alt="Value"/>
   <br/>
  <br/>
- <img src="https://i.imgur.com/KLqflvy.png" height="50%" width="50%" alt="Credentialed Scan Detailed Results w/ Firefox"/>
+  <img src="https://i.imgur.com/w5wx9hq.png" height="250%" width="150%" alt="Value"/>
   <br/>
  <br/>
-Rather than having 7 'Medium' level vulnerabilities as in the first credentialed scan, there are now 23. The 'High' severity vulnerabilities increased from 34 to 108, and the 'Critical' level vulnerabilities increased from 8 to 86. These scan results highlight the importance of ensuring that all third-party software are fully patched and up-to-date. Depicted below is a comparison of the first credentialed scan (left) to the second credentialed scan with the deprecated version of Firefox installed (right):"
+ <img src="https://i.imgur.com/vNOEbz4.png" height="150%" width="150%" alt="Value"/>
+  <br/>
+ <br/>
+  <img src="https://i.imgur.com/abzgqQu.png" height="150%" width="150%" alt="Value"/>
+  <br/>
+ <br/>
+This script provided an additional 5 hash digest values. There are now 2 values remaining to be decrypted. The current digest is: <strong>'PCTF{H@5H_8R0--S}'</strong> 
  <br/>
  <br/>
- <img src="https://i.imgur.com/WjAcm6L.png" height="30%" width="30%" alt="Credentialed Scan Results"/>     <img src="https://i.imgur.com/FcqpzOC.png" height="30%" width="30%" alt="Credentialed Scan Results w/ Firefox"/>
-<h2>Remediation:</h2> 
- <p align="center">
-Prior to running a vulnerability scan, it is essential to ensure that both the operating system and all third-party software are fully up-to-date. This will significantly reduce the number of vulnerabilities present in the scan results and allow the analyst to have more efficient vulnerability management. To further maximize efficiency, setting up automatic updates on your operating system and third-party software is very beneficial.
+The remaining 2 hash values use the algorithms TupleHash128 and TupleHash256, which are not supported by 'hashlib'. After conducting some research, I found the Python module 'Crypto.Hash', which supports both of these algorithms. For more information on the 'Crypto.Hash' algorithm, refer to the following link: https://pycryptodome.readthedocs.io/en/latest/src/hash/hash.html. I then wrote the following script: 
  <br/>
  <br/>
-<img src="https://i.imgur.com/aMYixCT.png" height="60%" width="60%" alt="Uninstall Firefox"/>
+ <img src="https://i.imgur.com/KdHDIQi.png" height="80%" width="80%" alt="Tuple Hash Script"/>
+ <br/>
+ <br/>
+This script is essentially identical to the previous one, but it utilizes a different module, resulting in slightly different syntax. It starts by generating the digest based on an input string and then iterates through the provided characters to display the results. Here are the script's output values:
+ <br/>
+ <br/>
+<img src="https://i.imgur.com/eKOUJEb.png" height="150%" width="150%" alt="TupleHash128"/>
 <br />
 <br />
- <img src="https://i.imgur.com/2aNsH9T.png" height="60%" width="60%" alt="Windows Updates"/>
- <br />
-<br />
-After uninstalling the deprecated Firefox and running Windows updates, I recieved the following scan result:
+ <img src="https://i.imgur.com/kw8A9fV.png" height="150%" width="150%" alt="TupleHash256"/>
 <br />
 <br />
-<img src="https://i.imgur.com/a1LVKQZ.png" height="60%" width="60%" alt="Windows Update Scan"/>
-<br />
-<br />
- <img src="https://i.imgur.com/XqWuev6.png" height="60%" width="60%" alt="Windows Update Scan"/>
-<br />
-<br />
-I then investigated more specific vulnerabilities for remediation. I found a few more vulnerabilities related to out-of-date software and installed the necessary software updates.
-<br />
-<br />
-<img src="https://i.imgur.com/lj5Xcv0.png" height="70%" width="70%" alt="3D Viewer Vulnerability"/>
-<br />
-<br />
- <img src="https://i.imgur.com/vY8a8LB.png" height="70%" width="70%" alt="3D Viewer Update"/>
-<br />
-<br />
-<img src="https://i.imgur.com/Nv8j19h.png" height="70%" width="70%" alt="Onedrive Update"/>
-<br />
-<br />
-Missing or misconfigured registry keys can also cause vulnerabilities on a system. When configuring registry keys, it is crucial to ensure that the changes made align with the intended system or application settings and do not introduce unintended consequences or conflicts with existing configurations. To address the WinVerifyTrust Signature Validation Vulnerability (CVE-2013-3900), refer to the following link: https://msrc.microsoft.com/update-guide/vulnerability/CVE-2013-3900.
-<br />
-<br />
- <img src="https://i.imgur.com/Zrx2GOj.png" height="70%" width="70%" alt="WinVerifyTrust Vulnerability"/>
-<br />
-<br />
-<img src="https://i.imgur.com/0eXXMzV.png" height="70%" width="70%" alt="WinVerifyTrust Remediation"/>
-<br />
-<br />
-I also addressed the 'SMB Signing not required' vulnerability, which has a 'Medium' severity level. This involved navigating to the 'Local Security Policy' and making the necessary configuration changes. The following link provides more information on how to resolve this vulnerability: https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/microsoft-network-server-digitally-sign-communications-always.
-<br />
-<br />
-<img src="https://i.imgur.com/AtNAkOd.png" height="70%" width="70%" alt="SMB Signing Vulnerability"/>
-<br />
-<br />
- <img src="https://i.imgur.com/lOaujty.png" height="70%" width="70%" alt="SMB Signing Remediation"/>
-<br />
-<br />
-<img src="https://i.imgur.com/3zNJDy1.png" height="70%" width="70%" alt="SMB Signing Remediation"/>
-<br />
-<br />
-After addressing these more specific vulnerabilities on the target system, I launched the final Nessus scan:
-<br />
-<br />
-<img src="https://i.imgur.com/X4tXd1e.png" height="60%" width="60%" alt="Final Scan Results"/>
-<br />
-<br />
- <img src="https://i.imgur.com/0rygP8U.png" height="60%" width="60%" alt="Final Scan Results"/>
-<br />
-<br />
-Rather than having 5 'Medium' level vulnerabilities as in the previous scan, there are now 0. The 'High' severity vulnerabilities decreased from 16 to 3, and the 'Critical' level vulnerabilities decreased from 2 to 1. Depicted below is a comparison of the previous scan after Firefox was uninstalled and Windows updates were run (left) to the most recent scan where more specific remediations were also made (right):
-<br />
-<br />
-<img src="https://i.imgur.com/cVK2O89.png" height="35%" width="35%" alt="Update Scan Results"/>     <img src="https://i.imgur.com/229wO2C.png" height="35%" width="35%" alt="Remediation Scan Results"/>
+All of the hash digests have now been retrieved! The resulting flag is <strong>PCTF{H@5H_8R0WNS}</strong>
 <h2>Key takeaways:</h2>
 <p align="center">
 <!--
