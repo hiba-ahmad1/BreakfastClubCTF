@@ -94,7 +94,7 @@ This script is essentially identical to the previous one, but it utilizes a diff
  <img src="https://i.imgur.com/kw8A9fV.png" height="150%" width="150%" alt="TupleHash256"/>
 <br />
 <br />
-All of the hash digests have now been retrieved! The resulting flag is <strong>PCTF{H@5H_8R0WNS}</strong>
+All of the hash digests have now been retrieved! The resulting flag is: <strong>PCTF{H@5H_8R0WNS}</strong>
 <h2>Key takeaways:</h2>
 <p align="center">
 <!--
